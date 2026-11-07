@@ -5,19 +5,12 @@
 <title>Defence Viva Crash Course — Ex Officer Cadet Zihad</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
-  @font-face { font-family: 'Li Ador Noirrit'; src: url('fonts/li-ador/LiAdorNoirrit-Regular.ttf'); font-weight: 400; }
-  @font-face { font-family: 'Li Ador Noirrit'; src: url('fonts/li-ador/LiAdorNoirrit-SemiBold.ttf'); font-weight: 600; }
-  @font-face { font-family: 'Li Ador Noirrit'; src: url('fonts/li-ador/LiAdorNoirrit-Bold.ttf'); font-weight: 700; }
-  @font-face { font-family: 'Li Ador Noirrit'; src: url('fonts/li-ador/LiAdorNoirrit-Bold_Italic.ttf'); font-weight: 700; font-style: italic; }
-
-  /* ====== Edit these to rebrand ====== */
+  /* ====== Palette ====== */
   :root {
-    --red: #e11d2a;
-    --red-2: #a30d17;
-    --red-3: #4a0308;
-    --ink: #160204;
-    --gold: #ffd34d;
-    --gold-2: #ffaa00;
+    --red: #d3121f;
+    --ink: #0d0103;
+    --gold-txt: linear-gradient(180deg, #fff4cf 0%, #ffd66b 34%, #d99a1e 56%, #ffe9a6 78%, #c4850f 100%);
+    --gold: #f2c14e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,194 +19,141 @@
     width: 1080px; height: 1080px; position: relative; overflow: hidden; margin: 0 auto;
     font-family: 'Poppins', sans-serif; color: #fff;
     background:
-      radial-gradient(ellipse 55% 50% at 76% 52%, rgba(255,70,60,.55), transparent 70%),
-      radial-gradient(ellipse 60% 35% at 50% 0%, rgba(255,120,90,.35), transparent 70%),
-      linear-gradient(160deg, var(--red-2) 0%, #6d0610 45%, var(--red-3) 75%, var(--ink) 100%);
+      radial-gradient(circle 420px at 790px 560px, rgba(235,30,40,.85), rgba(150,8,18,.55) 45%, transparent 75%),
+      radial-gradient(ellipse 80% 45% at 50% 0%, rgba(120,6,14,.9), transparent 75%),
+      linear-gradient(180deg, #3a0207 0%, #22020a 55%, var(--ink) 100%);
   }
-  .bn { font-family: 'Li Ador Noirrit', sans-serif; }
+  .gold { background: var(--gold-txt); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-  /* ---------- background elements ---------- */
-  .grid { position: absolute; inset: 0;
-          background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-          background-size: 54px 54px;
-          -webkit-mask-image: radial-gradient(ellipse 70% 60% at 70% 55%, #000 30%, transparent 80%);
-                  mask-image: radial-gradient(ellipse 70% 60% at 70% 55%, #000 30%, transparent 80%); }
-  .beam { position: absolute; top: -260px; width: 200px; height: 1200px;
-          background: linear-gradient(180deg, rgba(255,255,255,.16), transparent 65%);
-          filter: blur(22px); transform-origin: top center; }
-  .beam.b1 { left: 700px; transform: rotate(-24deg); }
-  .beam.b2 { left: 900px; transform: rotate(-14deg); opacity: .55; }
-  .watermark { position: absolute; right: -24px; top: 300px; font: 900 300px/1 'Poppins';
-               letter-spacing: -10px; color: transparent;
-               -webkit-text-stroke: 2px rgba(255,255,255,.10); }
-  /* crosshair rings behind teacher */
-  .ring { position: absolute; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); }
-  .ring.r1 { width: 560px; height: 560px; left: 515px; top: 340px; }
-  .ring.r2 { width: 420px; height: 420px; left: 585px; top: 410px; border-style: dashed; border-color: rgba(255,211,77,.35); }
-  .cross-h, .cross-v { position: absolute; background: rgba(255,255,255,.12); }
-  .cross-h { left: 485px; top: 619px; width: 620px; height: 2px; }
-  .cross-v { left: 794px; top: 310px; width: 2px; height: 620px; }
-  /* rank chevrons */
-  .chevrons { position: absolute; right: 70px; top: 400px; display: flex; flex-direction: column; gap: 6px; }
-  .chevrons i { width: 44px; height: 18px; display: block; background: linear-gradient(90deg, var(--gold), var(--gold-2));
-                clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 45%, 50% 100%, 0 45%); }
-  .star { position: absolute; background: var(--gold);
+  /* ---------- atmosphere ---------- */
+  .grain { position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: .13; mix-blend-mode: overlay;
+           background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .vignette { position: absolute; inset: 0; z-index: 7; pointer-events: none;
+              background: radial-gradient(ellipse 75% 75% at 55% 50%, transparent 60%, rgba(0,0,0,.5) 100%); }
+  .beam { position: absolute; top: -300px; width: 170px; height: 1300px; z-index: 1;
+          background: linear-gradient(180deg, rgba(255,210,190,.20), transparent 60%);
+          filter: blur(26px); transform-origin: top center; }
+  .beam.b1 { left: 820px; transform: rotate(-22deg); }
+  .beam.b2 { left: 960px; transform: rotate(-12deg); opacity: .5; }
+  .stripes { position: absolute; inset: 0; z-index: 1; opacity: .5;
+             background: repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 14px); }
+  .ring { position: absolute; border-radius: 50%; z-index: 1; }
+  .ring.r1 { width: 600px; height: 600px; left: 490px; top: 262px; border: 1px solid rgba(242,193,78,.45); }
+  .ring.r2 { width: 680px; height: 680px; left: 450px; top: 222px; border: 1px dashed rgba(255,255,255,.12); }
+  .tick { position: absolute; background: rgba(242,193,78,.6); z-index: 1; }
+  .star { position: absolute; z-index: 2; background: var(--gold);
           clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+  .chevrons { position: absolute; right: 64px; top: 360px; z-index: 2; display: flex; flex-direction: column; gap: 5px; }
+  .chevrons i { width: 38px; height: 15px; display: block; background: linear-gradient(90deg, #ffe08a, #d99a1e);
+                clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 45%, 50% 100%, 0 45%); }
 
-  /* ---------- top bar ---------- */
-  .logo { position: absolute; top: 34px; left: 44px; display: flex; align-items: center; gap: 10px; }
-  .logo .mark { width: 44px; height: 44px; border-radius: 10px; border: 3px solid #fff;
-                display: grid; place-items: center; font: 800 20px 'Poppins'; }
-  .logo .name { font: 800 14px/1.1 'Poppins'; letter-spacing: .6px; }
-  .live { position: absolute; top: 40px; right: 44px; display: flex; align-items: center; gap: 9px;
-          background: #fff; color: var(--red-2); border-radius: 999px; padding: 7px 18px 7px 14px;
-          font: 700 16px 'Poppins'; letter-spacing: 1.5px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
-  .live .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red);
-               box-shadow: 0 0 0 4px rgba(225,29,42,.2); }
+  /* gold frame with corner brackets */
+  .frame { position: absolute; inset: 22px; z-index: 6; border: 1px solid rgba(242,193,78,.35); pointer-events: none; }
+  .frame i { position: absolute; width: 34px; height: 34px; border: 3px solid var(--gold); }
+  .frame i:nth-child(1) { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+  .frame i:nth-child(2) { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+  .frame i:nth-child(3) { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+  .frame i:nth-child(4) { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
 
   /* ---------- heading ---------- */
-  .forces { position: absolute; top: 108px; left: 50%; transform: translateX(-50%);
-            border: 1.5px dashed rgba(255,255,255,.6); padding: 5px 20px; white-space: nowrap;
-            font: 600 15px 'Poppins'; letter-spacing: 5px; color: rgba(255,255,255,.9); }
-  .forces b { color: var(--gold); padding: 0 6px; }
-  .title { position: absolute; top: 146px; width: 100%; text-align: center;
-           font: 900 112px/1 'Poppins'; letter-spacing: -3px;
-           background: linear-gradient(180deg, #fff 0%, #fff 48%, #ffe7a3 70%, var(--gold-2) 100%);
-           -webkit-background-clip: text; background-clip: text; color: transparent;
-           filter: drop-shadow(0 6px 14px rgba(0,0,0,.35)); }
-  .sub { position: absolute; top: 268px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; }
-  .sub .box { background: #fff; color: var(--red-2); font: 800 44px/1 'Poppins'; letter-spacing: 6px;
-              padding: 10px 26px 10px 32px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-  .sub .box::before, .sub .box::after { content: ''; position: absolute; width: 9px; height: 9px; background: var(--red); }
-  .sub .box::before { top: -4px; left: -4px; }
-  .sub .box::after { bottom: -4px; right: -4px; }
+  .title { position: absolute; top: 62px; width: 100%; text-align: center; z-index: 5;
+           font: 900 116px/1 'Poppins'; letter-spacing: -3px; white-space: nowrap;
+           filter: drop-shadow(0 8px 18px rgba(0,0,0,.5)); }
+  .title .w { background: linear-gradient(180deg, #fff 0%, #fff 55%, #f1d9d9 100%);
+              -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { position: absolute; top: 196px; left: 50%; transform: translateX(-50%); z-index: 5;
+         display: flex; align-items: center; gap: 18px; white-space: nowrap; }
+  .sub .line { width: 110px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .sub .line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+  .sub .box { position: relative; padding: 9px 30px 10px 36px;
+              background: linear-gradient(180deg, #e61b28, #a00a14);
+              font: 700 34px/1 'Poppins'; letter-spacing: 10px;
+              box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.25); }
+  .sub .box::after { content: ''; position: absolute; inset: -6px; border: 1px solid rgba(242,193,78,.7); }
 
   /* ---------- feature list ---------- */
-  .list { position: absolute; left: 44px; top: 372px; width: 532px; list-style: none;
-          display: flex; flex-direction: column; gap: 8px; z-index: 3; }
-  .list li { display: flex; align-items: center; gap: 14px; height: 55px; padding: 0 16px 0 8px;
-             background: linear-gradient(90deg, rgba(0,0,0,.42), rgba(0,0,0,.16));
-             border: 1px solid rgba(255,255,255,.13); border-left: 3px solid var(--gold);
-             border-radius: 6px 14px 14px 6px; backdrop-filter: blur(6px);
-             font: 500 19px/1.2 'Poppins'; letter-spacing: -.1px; }
-  .list .n { flex: 0 0 40px; height: 40px; border-radius: 9px; display: grid; place-items: center;
-             background: linear-gradient(145deg, var(--red), var(--red-2));
-             border: 1px solid rgba(255,255,255,.25); font: 800 16px 'Poppins'; color: #fff; }
-  .list .t { white-space: nowrap; }
-  .list b { color: var(--gold); font-weight: 700; }
-  .list .ico { display: inline-flex; gap: 4px; margin-left: auto; }
-  .list .ico svg { width: 22px; height: 22px; fill: var(--gold); }
-  .list .tag { margin-left: auto; font: 700 11px 'Poppins'; letter-spacing: 1.5px; color: var(--red-2);
-               background: var(--gold); padding: 4px 9px; border-radius: 999px; }
+  .list { position: absolute; left: 62px; top: 296px; width: 520px; list-style: none; z-index: 5; }
+  .list li { position: relative; display: flex; align-items: center; gap: 18px; height: 67px; }
+  .list li::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+                    background: linear-gradient(90deg, rgba(242,193,78,.55), rgba(242,193,78,.12) 70%, transparent); }
+  .list li:last-child::after { display: none; }
+  .list .n { flex: 0 0 44px; font: italic 700 34px/1 'Playfair Display';
+             background: var(--gold-txt); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .list .t { font: 400 20px/1.2 'Poppins'; color: rgba(255,255,255,.92); white-space: nowrap;
+             text-shadow: 0 2px 8px rgba(0,0,0,.45); }
+  .list .t b { font-weight: 700; color: #fff; }
+  .list .ico { display: inline-flex; gap: 7px; margin-left: auto; }
+  .list .ico svg { width: 20px; height: 20px; fill: var(--gold); }
+  .list .tag { margin-left: auto; font: 600 11px 'Poppins'; letter-spacing: 2.5px; color: var(--gold);
+               border: 1px solid rgba(242,193,78,.7); padding: 4px 10px 4px 12px; border-radius: 999px; }
 
   /* ---------- teacher ---------- */
-  .teacher { position: absolute; left: 460px; bottom: 74px; height: 640px; z-index: 2;
-             filter: drop-shadow(0 20px 40px rgba(0,0,0,.45)); }
-  .fade { position: absolute; left: 0; right: 0; bottom: 74px; height: 120px; z-index: 2;
-          background: linear-gradient(0deg, rgba(40,2,6,.85), transparent); }
+  .teacher { position: absolute; left: 448px; bottom: 0; height: 735px; z-index: 3;
+             filter: drop-shadow(0 0 30px rgba(255,40,40,.35)) drop-shadow(0 24px 40px rgba(0,0,0,.55)); }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 300px; z-index: 4;
+          background: linear-gradient(0deg, rgba(13,1,3,.97) 0%, rgba(13,1,3,.75) 35%, transparent 100%); }
 
-  /* ---------- name plate ---------- */
-  .plate { position: absolute; right: 44px; bottom: 104px; z-index: 4; text-align: left;
-           background: rgba(255,255,255,.97); color: var(--ink); border-radius: 14px;
-           padding: 12px 22px 13px 20px; box-shadow: 0 16px 40px rgba(0,0,0,.45);
-           border-left: 6px solid var(--red); }
-  .plate .by { font: 700 12px 'Poppins'; letter-spacing: 3px; color: var(--red); }
-  .plate .nm { font: 800 27px/1.15 'Poppins'; letter-spacing: -.5px; }
-  .plate .nm span { font-weight: 500; color: #555; font-size: 19px; display: block; letter-spacing: 0; }
-  .plate .army { display: inline-flex; align-items: center; gap: 7px; margin-top: 6px;
-                 background: var(--red-2); color: #fff; border-radius: 6px; padding: 4px 11px;
-                 font: 700 14px 'Poppins'; letter-spacing: 1px; }
-  .plate .army i { width: 13px; height: 13px; background: var(--gold); display: block;
-                   clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-
-  /* bangla tagline */
-  .tagline { position: absolute; left: 50px; top: 888px; z-index: 4; text-align: left;
-             font: 700 27px/1.2 'Li Ador Noirrit'; color: #fff; text-shadow: 0 4px 14px rgba(0,0,0,.5); }
-  .tagline em { font-style: normal; color: var(--gold); display: block; font-size: 40px; }
-
-  /* ---------- footer ---------- */
-  .footer { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; z-index: 5;
-            background: linear-gradient(90deg, #12020a, #2a040a 50%, #12020a);
-            border-top: 2px solid rgba(255,211,77,.55);
-            display: flex; align-items: center; justify-content: space-between; padding: 0 44px; }
-  .footer .item { display: flex; align-items: center; gap: 10px; font: 600 17px 'Poppins'; }
-  .footer .item small { display: block; font: 500 11px 'Poppins'; color: rgba(255,255,255,.6); letter-spacing: 1px; }
-  .footer svg { width: 30px; height: 30px; fill: var(--gold); }
-  .btn { background: linear-gradient(180deg, var(--gold), var(--gold-2)); color: var(--red-3);
-         font: 800 19px 'Poppins'; letter-spacing: 1.5px; padding: 11px 30px; border-radius: 999px;
-         box-shadow: 0 6px 18px rgba(255,170,0,.35); }
+  /* ---------- conducted by ---------- */
+  .by { position: absolute; left: 62px; bottom: 58px; z-index: 5; }
+  .by .k { display: flex; align-items: center; gap: 12px; font: 600 13px 'Poppins'; letter-spacing: 5px; color: var(--gold); }
+  .by .k::after { content: ''; width: 70px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+  .by .rank { margin-top: 10px; font: italic 500 25px/1 'Playfair Display'; color: rgba(255,255,255,.85); }
+  .by .nm { font: 800 56px/1.02 'Poppins'; letter-spacing: 1px; }
+  .by .army { margin-top: 8px; display: inline-flex; align-items: center; gap: 10px;
+              font: 600 16px 'Poppins'; letter-spacing: 4px; color: #fff;
+              padding: 6px 16px 6px 12px; border-left: 3px solid var(--red);
+              background: linear-gradient(90deg, rgba(211,18,31,.55), transparent); }
+  .by .army i { width: 14px; height: 14px; display: block; background: var(--gold);
+                clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
 </style>
 </head>
 <body>
 <div class="poster" id="poster">
-  <!-- background -->
-  <div class="grid"></div>
+  <!-- atmosphere -->
+  <div class="stripes"></div>
   <div class="beam b1"></div><div class="beam b2"></div>
-  <div class="watermark">VIVA</div>
-  <div class="ring r1"></div><div class="ring r2"></div>
-  <div class="cross-h"></div><div class="cross-v"></div>
-  <div class="star" style="left:60px;top:300px;width:22px;height:22px;opacity:.8"></div>
-  <div class="star" style="left:1004px;top:276px;width:30px;height:30px"></div>
-  <div class="star" style="left:96px;top:112px;width:14px;height:14px;opacity:.6"></div>
-  <div class="star" style="left:960px;top:118px;width:16px;height:16px;opacity:.6"></div>
-
-  <!-- LOGO: replace with your own -->
-  <div class="logo"><div class="mark">YL</div><div class="name">YOUR<br>LOGO</div></div>
-  <div class="live"><span class="dot"></span>ONLINE BATCH</div>
+  <div class="ring r2"></div><div class="ring r1"></div>
+  <div class="star" style="left:70px;top:236px;width:16px;height:16px;opacity:.7"></div>
+  <div class="star" style="left:996px;top:236px;width:16px;height:16px;opacity:.7"></div>
+  <div class="star" style="left:1010px;top:300px;width:26px;height:26px"></div>
+  <div class="chevrons"><i></i><i></i><i></i></div>
 
   <!-- heading -->
-  <div class="forces">ARMY<b>•</b>NAVY<b>•</b>AIR FORCE</div>
-  <div class="title">DEFENCE VIVA</div>
-  <div class="sub"><div class="box">CRASH COURSE</div></div>
+  <div class="title"><span class="w">DEFENCE</span> <span class="gold">VIVA</span></div>
+  <div class="sub"><span class="line"></span><div class="box">CRASH COURSE</div><span class="line r"></span></div>
 
   <!-- features -->
   <ul class="list">
     <li><span class="n">01</span><span class="t">Comprehensive &amp; <b>Clear Guidelines</b></span></li>
-    <li><span class="n">02</span><span class="t">Covers <b>all three forces</b></span> <span class="ico">
-        <!-- army: star -->
+    <li><span class="n">02</span><span class="t">Covers <b>all three forces</b></span>
+      <span class="ico">
         <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7L12 17.6 5.8 21.2l1.6-7L2 9.5l7.1-.6z"/></svg>
-        <!-- navy: anchor -->
         <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 1 5.83V10h3v2h-3v7.9A7 7 0 0 0 19 13h-2l3-4 3 4h-2a9 9 0 0 1-18 0H1l3-4 3 4H5a7 7 0 0 0 6 6.9V12H8v-2h3V7.83A3 3 0 0 1 12 2zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
-        <!-- air force: plane -->
         <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
       </span></li>
     <li><span class="n">03</span><span class="t">Common Questions &amp; <b>Impressive Approaches</b></span></li>
-    <li><span class="n">04</span><span class="t">Debunking <b>doubts &amp; misconceptions</b></span></li>
+    <li><span class="n">04</span><span class="t">Debunking <b>Doubts &amp; Misconceptions</b></span></li>
     <li><span class="n">05</span><span class="t"><b>Demo / Mock Viva</b> &amp; Reviews</span> <span class="tag">ONLINE</span></li>
-    <li><span class="n">06</span><span class="t">Specialized <b>Group</b> Support</span></li>
+    <li><span class="n">06</span><span class="t"><b>Specialized</b> Group</span></li>
     <li><span class="n">07</span><span class="t"><b>Spoken English</b> Tips</span></li>
-    <li><span class="n">08</span><span class="t"><b>Live Q&amp;A</b> Session</span> <span class="tag">LIVE</span></li>
+    <li><span class="n">08</span><span class="t"><b>Live Q&amp;A</b> Session</span></li>
   </ul>
 
   <!-- teacher -->
   <img class="teacher" src="img/teacher-zihad.png" alt="Ex Officer Cadet Zihad">
   <div class="fade"></div>
 
-  <!-- Bangla tagline -->
-  <div class="tagline bn">স্বপ্নের ইউনিফর্মের পথে<em>ভাইভা হোক জয়ের গল্প</em></div>
-
-  <div class="chevrons"><i></i><i></i><i></i></div>
-
-  <!-- name plate -->
-  <div class="plate">
-    <div class="by">CONDUCTED BY</div>
-    <div class="nm"><span>Ex Officer Cadet</span>Zihad</div>
+  <!-- conducted by -->
+  <div class="by">
+    <div class="k">CONDUCTED BY</div>
+    <div class="rank">Ex Officer Cadet</div>
+    <div class="nm gold">ZIHAD</div>
     <div class="army"><i></i>BANGLADESH ARMY</div>
   </div>
 
-  <!-- footer: replace placeholders -->
-  <div class="footer">
-    <div class="item">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.9a15.7 15.7 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4a14 14 0 0 1 1.9 4h-3.8A14 14 0 0 1 12 4zM4.3 14a8 8 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4zm.8 2h2.9a15.7 15.7 0 0 0 1.4 3.6A8 8 0 0 1 5.1 16zM8 8H5.1a8 8 0 0 1 4.3-3.6A15.7 15.7 0 0 0 8 8zm4 12a14 14 0 0 1-1.9-4h3.8A14 14 0 0 1 12 20zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.3 5.6a15.7 15.7 0 0 0 1.4-3.6h2.9a8 8 0 0 1-4.3 3.6zM16.3 14a16.5 16.5 0 0 0 0-4h3.4a8 8 0 0 1 0 4z"/></svg>
-      <div><small>VISIT NOW</small>www.yourwebsite.com</div>
-    </div>
-    <div class="btn">ENROLL NOW</div>
-    <div class="item" style="text-align:right">
-      <div><small>CONTACT NOW</small>01XXX-XXXXXX</div>
-      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-    </div>
-  </div>
+  <div class="frame"><i></i><i></i><i></i><i></i></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
 </div>
 </body>
 </html>
