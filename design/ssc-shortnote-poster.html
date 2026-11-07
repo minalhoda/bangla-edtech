@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>SSC 27 &amp; 28 — Physics &amp; Chemistry ShortNote E-Book</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* ====== Edit these to rebrand ====== */
+  :root {
+    --red-1: #e3141f;
+    --red-2: #a50b12;
+    --red-3: #5e0307;
+    --gold: #ffd23f;
+    --gold-2: #ffb300;
+    --phy-1: #1f5bd8;
+    --phy-2: #0b2f8f;
+    --chem-1: #e0249a;
+    --chem-2: #7b1fd1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #222; }
+  .poster {
+    width: 1080px; height: 1080px; position: relative; overflow: hidden;
+    margin: 0 auto;
+    font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+    color: #fff;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 30%, rgba(255,90,60,.45), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 8% 2%, rgba(255,160,90,.55), transparent 70%),
+      radial-gradient(circle at 50% 60%, var(--red-1) 0%, var(--red-2) 55%, var(--red-3) 100%);
+  }
+  .bn { font-family: 'Hind Siliguri', sans-serif; }
+
+  /* light beams + watermark */
+  .beam { position: absolute; top: -200px; width: 220px; height: 1100px;
+          background: linear-gradient(180deg, rgba(255,255,255,.14), transparent 70%);
+          filter: blur(18px); transform-origin: top center; }
+  .beam.b1 { left: 40px; transform: rotate(28deg); }
+  .beam.b2 { left: 240px; transform: rotate(18deg); opacity: .6; }
+  .watermark { position: absolute; top: 40px; left: -30px; font: 800 230px/1 'Poppins';
+               color: rgba(0,0,0,.10); letter-spacing: -6px; white-space: nowrap; }
+
+  /* logo */
+  .logo { position: absolute; top: 30px; left: 30px; display: flex; align-items: center; gap: 10px; }
+  .logo .mark { width: 46px; height: 46px; border-radius: 10px; border: 3px solid #fff;
+                display: grid; place-items: center; font: 800 22px 'Poppins'; }
+  .logo .name { font: 800 15px/1.05 'Poppins'; letter-spacing: .5px; }
+
+  /* header */
+  .ssc { position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+         border: 2px dashed rgba(255,255,255,.75); padding: 4px 14px; }
+  .ssc span { display: block; background: #fff; color: #1a1a1a; padding: 2px 22px 4px;
+              font: 800 54px/1.05 'Poppins'; letter-spacing: -1px; }
+  .ssc b { color: var(--gold-2); -webkit-text-stroke: 1px #c98a00; }
+  .ssc small { font-size: 28px; color: #c98a00; }
+
+  .title { position: absolute; top: 110px; width: 100%; text-align: center;
+           font: 800 88px/1.05 'Poppins'; letter-spacing: -2px;
+           background: linear-gradient(90deg, #fff 0%, #fff 38%, #ffe9a8 55%, var(--gold) 75%, var(--gold-2) 100%);
+           -webkit-background-clip: text; background-clip: text; color: transparent;
+           filter: drop-shadow(0 4px 6px rgba(0,0,0,.35)); }
+  .subtitle { position: absolute; top: 210px; width: 100%; text-align: center;
+              font: 800 italic 74px/1.05 'Poppins'; letter-spacing: -1px;
+              text-shadow: 0 4px 8px rgba(0,0,0,.35); }
+  .subtitle i { font: 500 italic 72px 'Playfair Display'; letter-spacing: 0; margin-right: 12px; }
+
+  .pill { position: absolute; top: 300px; left: 50%; transform: translateX(-50%);
+          width: 760px; height: 64px; border-radius: 40px;
+          background: linear-gradient(90deg, #fff 0%, #fff 45%, #ffe07a 75%, var(--gold-2) 100%);
+          box-shadow: -10px 0 0 #ff2a2a, 10px 0 0 #ff2a2a, 0 8px 18px rgba(0,0,0,.35);
+          display: flex; align-items: center; justify-content: center; gap: 10px;
+          color: #3a1305; font: 600 38px 'Poppins'; }
+  .pill .bn { font: 700 italic 44px 'Anek Bangla'; color: #c2000b; transform: skewX(-8deg); display: inline-block; }
+  .pill i { font: 500 italic 42px 'Playfair Display'; }
+
+  /* glass panel */
+  .panel { position: absolute; top: 400px; left: 110px; width: 860px; height: 760px;
+           border-radius: 44px; border: 2px solid rgba(255,255,255,.35);
+           background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03)); }
+  .card { position: absolute; top: 440px; width: 280px; height: 470px; border-radius: 26px;
+          background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.08));
+          border: 1px solid rgba(255,255,255,.35); }
+  .card.left { left: 140px; }
+  .card.right { left: 620px; }
+
+  .price { position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+           display: flex; align-items: center; background: #fff; border-radius: 30px;
+           padding: 4px; box-shadow: 0 6px 12px rgba(0,0,0,.3); white-space: nowrap; }
+  .price .old { background: var(--red-1); color: #fff; border-radius: 26px; padding: 0 16px;
+                font: 700 30px/44px 'Hind Siliguri'; position: relative; }
+  .price .old::after { content: ''; position: absolute; left: 10px; right: 10px; top: 50%;
+                       height: 3px; background: #fff; transform: rotate(-12deg); }
+  .price .new { color: #111; padding: 0 16px 0 12px; font: 700 34px/44px 'Hind Siliguri'; }
+
+  /* book covers */
+  .book { position: absolute; top: 525px; width: 222px; height: 330px; border-radius: 4px 10px 10px 4px;
+          overflow: hidden; box-shadow: 10px 14px 24px rgba(0,0,0,.45), inset 10px 0 12px -6px rgba(0,0,0,.45); }
+  .book::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 14px;
+                  background: linear-gradient(90deg, rgba(0,0,0,.35), rgba(255,255,255,.18), transparent); z-index: 5; }
+  .book.phy { left: 170px; background: linear-gradient(180deg, var(--phy-1) 0%, var(--phy-2) 55%, #eef2fb 55.2%, #fff 100%); }
+  .book.chem { left: 650px; background: linear-gradient(160deg, var(--chem-1) 0%, #b0218f 45%, var(--chem-2) 100%); }
+  .book .brand { position: absolute; top: 12px; left: 20px; font: 800 7px/1 'Poppins'; opacity: .9; }
+  .book .tag { position: absolute; top: 34px; left: 50%; transform: translateX(-50%);
+               background: #fff; color: var(--phy-2); border: 2px solid #ffcc00; border-radius: 6px;
+               font: 800 14px/1 'Poppins'; padding: 4px 10px; white-space: nowrap; }
+  .book.chem .tag { color: #9c1a85; }
+  .book .bt { position: absolute; top: 62px; width: 100%; text-align: center;
+              font: 800 40px/1.1 'Anek Bangla'; color: #fff;
+              text-shadow: 0 3px 0 rgba(0,0,0,.35); -webkit-text-stroke: 1px rgba(0,0,0,.15); }
+  .book.chem .bt { font-size: 50px; top: 58px; }
+  .book .sn { position: absolute; top: 112px; width: 100%; text-align: center; font: 700 17px/1.1 'Poppins'; }
+  .book .sn small { display: block; font-size: 12px; letter-spacing: 1px; }
+  .book.chem .sn { top: 122px; }
+
+  .chips { position: absolute; top: 200px; right: 10px; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .chips span { background: var(--phy-2); color: #fff; border-radius: 10px; padding: 2px 10px;
+                font: 600 11px/1.5 'Hind Siliguri'; }
+  .art { position: absolute; }
+  .wave { position: absolute; left: 0; right: 0; bottom: 0; height: 140px; }
+
+  /* open book */
+  .openbook-wrap { position: absolute; z-index: 10; left: -40px; top: 750px; width: 1180px; height: 560px; perspective: 1400px; }
+  .openbook { position: absolute; inset: 0; transform: rotateX(50deg) rotateZ(-14deg) translate(30px, -40px);
+              transform-style: preserve-3d; display: flex; }
+  .page { position: relative; width: 50%; height: 100%; background: #fbfaf7; overflow: hidden;
+          box-shadow: 0 30px 50px rgba(0,0,0,.45); }
+  .page.l { border-radius: 14px 0 0 14px;
+            background: linear-gradient(90deg, #fbfaf7 82%, #e4e1da 100%); }
+  .page.r { border-radius: 0 14px 14px 0;
+            background: linear-gradient(90deg, #d8d4cc 0%, #fbfaf7 16%); }
+  .page .head { position: absolute; top: 40px; left: 60px; right: 60px; height: 92px; border-radius: 16px;
+                display: grid; place-items: center; color: #fff; font: 700 40px/1 'Anek Bangla';
+                box-shadow: 0 6px 0 rgba(0,0,0,.12); }
+  .page.l .head { background: linear-gradient(90deg, #0d8fe0, #23c3f7); }
+  .page.r .head { background: linear-gradient(90deg, #ff8a00, #ffb300); color: #5a1a00; }
+  .page .head small { display: block; font: 600 20px 'Hind Siliguri'; margin-top: -6px; }
+  .page .head > div { text-align: center; }
+  .page .body { position: absolute; top: 160px; left: 60px; right: 50px; color: #333;
+                font: 500 19px/1.65 'Hind Siliguri'; }
+  .page .topic { display: inline-block; background: #1e6fd9; color: #fff; padding: 2px 12px; border-radius: 6px;
+                 font: 600 18px/1.5 'Hind Siliguri'; margin-bottom: 6px; }
+  .page.r .topic { background: #e23b0e; }
+  .page .hl { color: #c4161c; font-weight: 700; }
+  .page .box { margin-top: 10px; border: 2px dashed #e8a200; border-radius: 12px; padding: 8px 14px; background: #fff8e1; }
+  .page ul { padding-left: 22px; }
+  .gutter { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; transform: translateX(-2px);
+            background: rgba(0,0,0,.18); }
+
+  /* CTA */
+  .cta { position: absolute; left: 0; right: 0; bottom: 26px; display: flex; justify-content: center;
+         align-items: center; gap: 12px; z-index: 20; }
+  .cta .txt { font: 500 34px 'Poppins'; text-shadow: 0 2px 8px rgba(0,0,0,.6); color: #fff; }
+  .cta .url { display: flex; align-items: center; gap: 8px; background: var(--red-1);
+              border-radius: 14px; padding: 4px 16px 4px 6px; font: 700 26px 'Poppins';
+              box-shadow: 0 6px 14px rgba(0,0,0,.35); }
+  .cta .globe { width: 34px; height: 34px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .cta-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; z-index: 19;
+              background: linear-gradient(180deg, transparent, rgba(40,0,0,.55)); }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="beam b1"></div><div class="beam b2"></div>
+  <div class="watermark">EDTECH</div>
+
+  <!-- LOGO: replace with your own -->
+  <div class="logo">
+    <div class="mark">B</div>
+    <div class="name">BANGLA<br>EDTECH</div>
+  </div>
+
+  <div class="ssc"><span>SSC <b>27</b> <small>&amp;</small> <b>28</b></span></div>
+  <div class="title">Physics &amp; Chemistry</div>
+  <div class="subtitle"><i>ShortNote</i>E-Book</div>
+  <div class="pill">Full Syllabus - <span class="bn">রিভিশন</span> <i>Material</i></div>
+
+  <div class="panel"></div>
+  <div class="card left"></div>
+  <div class="card right"></div>
+
+  <div class="price" style="left:280px;top:470px"><span class="old">৳১৫০</span><span class="new">৳৯৯</span></div>
+  <div class="price" style="left:760px;top:470px"><span class="old">৳১৫০</span><span class="new">৳৯৯</span></div>
+
+  <!-- PHYSICS BOOK -->
+  <div class="book phy">
+    <div class="brand">BANGLA EDTECH</div>
+    <div class="tag">SSC 27-28</div>
+    <div class="bt">পদার্থবিজ্ঞান</div>
+    <div class="sn">ShortNote 2.0<small>E-BOOK</small></div>
+    <svg class="art" style="left:16px;top:168px" width="150" height="150" viewBox="0 0 100 100">
+      <g fill="none" stroke="#1f5bd8" stroke-width="3">
+        <ellipse cx="50" cy="50" rx="42" ry="15"/>
+        <ellipse cx="50" cy="50" rx="42" ry="15" transform="rotate(60 50 50)"/>
+        <ellipse cx="50" cy="50" rx="42" ry="15" transform="rotate(120 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="8" fill="#ffb300"/>
+      <circle cx="92" cy="50" r="4" fill="#e3141f"/>
+      <circle cx="29" cy="14" r="4" fill="#e3141f"/>
+      <circle cx="29" cy="86" r="4" fill="#e3141f"/>
+      <path d="M78 10 l-8 14 h7 l-6 14" stroke="#ffcc00" stroke-width="3" fill="none"/>
+    </svg>
+    <div class="chips"><span>সহজ কনসেপ্ট</span><span>সূত্র</span><span>শর্টকাট</span></div>
+  </div>
+
+  <!-- CHEMISTRY BOOK -->
+  <div class="book chem">
+    <div class="brand">BANGLA EDTECH</div>
+    <div class="tag">SSC 27-28</div>
+    <div class="bt">রসায়ন</div>
+    <div class="sn">ShortNote 2.0<small>E-BOOK</small></div>
+    <svg class="wave" viewBox="0 0 222 140" preserveAspectRatio="none">
+      <path d="M0 40 C60 0 120 80 222 30 V140 H0Z" fill="#5d17b8"/>
+      <path d="M0 70 C70 40 140 110 222 60 V140 H0Z" fill="#3f0e8f"/>
+    </svg>
+    <svg class="art" style="left:56px;top:170px" width="110" height="130" viewBox="0 0 100 120">
+      <path d="M38 8 h24 v8 h-4 v30 l30 52 a8 8 0 0 1 -7 12 H15 a8 8 0 0 1 -7 -12 l30 -52 v-30 h-4z"
+            fill="rgba(255,255,255,.92)" stroke="#fff" stroke-width="2"/>
+      <path d="M20 80 h60 l9 16 a6 6 0 0 1 -5 9 H16 a6 6 0 0 1 -5 -9z" fill="#22d3a6"/>
+      <circle cx="40" cy="92" r="4" fill="#fff"/><circle cx="58" cy="86" r="3" fill="#fff"/>
+      <circle cx="68" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2"/>
+      <circle cx="78" cy="16" r="3" fill="none" stroke="#fff" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <!-- OPEN BOOK -->
+  <div class="openbook-wrap">
+    <div class="openbook">
+      <div class="page l">
+        <div class="head"><div>পদার্থবিজ্ঞান<small>১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ</small></div></div>
+        <div class="body">
+          <span class="topic">টপিক ০১: মৌলিক ও লব্ধ রাশি</span><br>
+          <span class="hl">মৌলিক রাশি:</span> যে সকল রাশি অন্য কোনো রাশির উপর নির্ভর করে না, তাদের মৌলিক রাশি বলে। যেমন: দৈর্ঘ্য, ভর, সময়।
+          <div class="box"><b>সূত্র:</b> বেগ v = s / t &nbsp;|&nbsp; ত্বরণ a = (v − u) / t</div>
+          <ul><li>মৌলিক রাশি মোট ৭টি</li><li>এককের আন্তর্জাতিক পদ্ধতি — SI</li></ul>
+        </div>
+      </div>
+      <div class="page r">
+        <div class="head"><div>রসায়ন<small>৩য় অধ্যায়: পদার্থের গঠন</small></div></div>
+        <div class="body">
+          <span class="topic">টপিক ০১: মৌলিক ও যৌগিক পদার্থ</span><br>
+          <span class="hl">মৌলিক পদার্থ:</span> যে পদার্থকে ভাঙলে ভিন্ন ধর্মের নতুন কোনো পদার্থ পাওয়া যায় না। যেমন: H, N, O, Na.
+          <ul><li>১১৮টি মৌল এ পর্যন্ত আবিষ্কৃত</li><li>৯৮টি মৌল প্রকৃতিতে পাওয়া যায়</li></ul>
+          <div class="box"><b>যৌগিক পদার্থ:</b> H₂O, CH₄, H₂SO₄</div>
+        </div>
+      </div>
+      <div class="gutter"></div>
+    </div>
+  </div>
+
+  <div class="cta-fade"></div>
+  <div class="cta">
+    <span class="txt">To purchase visit</span>
+    <span class="url">
+      <span class="globe"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e3141f" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/></svg></span>
+      www.yourwebsite.com
+    </span>
+  </div>
+</div>
+</body>
+</html>
